@@ -11,8 +11,9 @@
  */
 class Solution {
 public:
-    vector<vector<int>> levelOrder(TreeNode* root) {
-        vector<vector<int>> ans;
+    
+    vector<int> largestValues(TreeNode* root) {
+        vector<int> ans;
         if(!root) return ans;
         queue<TreeNode*> q;
         q.push(root);
@@ -31,15 +32,7 @@ public:
                  }
                  level.push_back(temp->val);
             }
-            ans.push_back(level);
-        }
-        return ans;
-    }
-    vector<int> largestValues(TreeNode* root) {
-        vector<int> ans;
-        vector<vector<int>> v=levelOrder(root);
-        for(auto x:v){
-            ans.push_back(*max_element(x.begin(),x.end()));
+            ans.push_back(*max_element(level.begin(),level.end()));
         }
         return ans;
     }
