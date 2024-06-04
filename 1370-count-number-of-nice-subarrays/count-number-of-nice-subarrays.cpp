@@ -1,25 +1,20 @@
 class Solution {
 public:
-
     int f(vector<int>& nums, int goal){
-        for(int i=0;i<nums.size();i++){
-            if(nums[i]%2==0){
-                nums[i]=0;
-            }
-            else{
-                nums[i]=1;
-            }
-        }
-        int i=0,j=0,sum=0,count=0;
         if(goal<0) return 0;
-        while(j<nums.size()){
-            sum+=nums[j];
+        int left=0;
+        int right=0;
+        int sum=0;
+        int count=0;
+        while(right<nums.size()){
+            sum+=(nums[right]%2);
             while(sum>goal){
-                sum-=nums[i];
-                i++;
+                sum=sum-(nums[left]%2);
+                left++;
             }
-            count+=(j-i+1);
-            j++;
+            count+=(right-left+1);
+            right++;
+            
         }
         return count;
     }
