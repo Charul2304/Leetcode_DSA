@@ -2,23 +2,17 @@ class Solution {
 public:
     int pivotIndex(vector<int>& nums) {
         int n=nums.size();
-        vector<int> presum(n);
-        vector<int> sufsum(n);
-        presum[0]=nums[0];
+        vector<int> left(n,0);
+        vector<int> right(n,0);
         for(int i=1;i<n;i++){
-            presum[i]=presum[i-1]+nums[i];
+            left[i]=left[i-1]+nums[i-1];
         }
-        sufsum[n-1]=nums[n-1];
         for(int i=n-2;i>=0;i--){
-            sufsum[i]=sufsum[i+1]+nums[i];
+            right[i]=right[i+1]+nums[i+1];
         }
-        int ans=-1;
         for(int i=0;i<n;i++){
-            if(presum[i]==sufsum[i]){
-                ans=i;
-                break;
-            }
+            if(left[i]==right[i]) return i;
         }
-        return ans;
+        return -1;
     }
 };
