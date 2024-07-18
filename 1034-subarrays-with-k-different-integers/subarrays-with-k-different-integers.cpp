@@ -1,20 +1,18 @@
 class Solution {
 public:
     int f(vector<int>& nums, int k){
+        int l=0,r=0,count=0;
         int n=nums.size();
-        int left=0;
-        int right=0;
-        int count=0;
         unordered_map<int,int> mp;
-        while(right<n){
-            mp[nums[right]]++;
+        while(r<n){
+            mp[nums[r]]++;
             while(mp.size()>k){
-                mp[nums[left]]--;
-                if(mp[nums[left]]==0)mp.erase(nums[left]);
-                left++;
+                mp[nums[l]]--;
+                if(mp[nums[l]]==0) mp.erase(nums[l]);
+                l++;
             }
-            count+=(right-left+1);
-            right++;
+            count+=(r-l+1);
+            r++;
         }
         return count;
     }
