@@ -2,19 +2,19 @@ class Solution {
 public:
     int f(vector<int>& nums, int goal){
         if(goal<0) return 0;
-        int left=0;
-        int right=0;
-        int sum=0;
+        int n=nums.size();
+        int i=0,j=0;
         int count=0;
-        while(right<nums.size()){
-            sum+=(nums[right]%2);
+        int sum=0;
+        while(j<n){
+            sum+=(nums[j]%2);
             while(sum>goal){
-                sum=sum-(nums[left]%2);
-                left++;
+                sum-=(nums[i]%2);
+                i++;
             }
-            count+=(right-left+1);
-            right++;
             
+            count+=(j-i+1);
+            j++;
         }
         return count;
     }
