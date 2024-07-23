@@ -11,17 +11,13 @@
  */
 class Solution {
 public:
-    bool helper(TreeNode* r1,TreeNode* r2){
-        if((r1==NULL && r2!=NULL) || (r1!=NULL && r2==NULL)) return false;
-        if(r1==NULL && r2==NULL) return true;
-        if(r1->val == r2->val){
-            return helper(r1->left,r2->right) && helper(r1->right,r2->left);
-        }
-        return false;
+    bool solve(TreeNode* leftn, TreeNode* rightn) {
+        if (leftn == NULL || rightn == NULL) return leftn == rightn;
+        if (leftn->val != rightn->val) return false;
+        return solve(leftn->left, rightn->right) && solve(leftn->right, rightn->left);
     }
+
     bool isSymmetric(TreeNode* root) {
-        TreeNode* root_left=root->left;
-        TreeNode* root_right=root->right;
-        return helper(root_left,root_right);   
+        return root == NULL || solve(root->left, root->right);
     }
 };
