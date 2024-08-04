@@ -25,7 +25,7 @@ public:
                 a+=s[j];
                 if(ispalindrome(a) && j-i+1>maxlen){
                     
-                    maxlen=max(maxlen,j-i+1);
+                    maxlen=j-i+1;
                     ans=a;
                 }
             }
