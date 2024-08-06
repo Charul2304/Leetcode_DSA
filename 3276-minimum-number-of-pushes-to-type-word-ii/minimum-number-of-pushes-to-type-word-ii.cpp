@@ -28,9 +28,9 @@ public:
                 mul++;
                 count = 0;
             }
-            cout<<mul<<endl;
+            
             ans += (x.second * mul);
-            cout<<ans<<endl;
+            
             count++;
             
         }
