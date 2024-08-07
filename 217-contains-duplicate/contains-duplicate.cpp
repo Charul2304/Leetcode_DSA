@@ -6,7 +6,10 @@ public:
             mp[x]++;
         }
         for(auto x:mp){
-            if(x.second>=2) return true;
+            if(x.second>=2){
+                return true;
+                break;
+            }
         }
         return false;
     }
