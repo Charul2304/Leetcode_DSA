@@ -8,16 +8,16 @@
  */
 class Solution {
 public:
-    //brute-force method using map
     bool hasCycle(ListNode *head) {
-        map<ListNode*,int> mp;
-        ListNode* temp=head;
-        while(temp!=NULL){
-            if(mp.find(temp)!=mp.end()){
+        ListNode* fast=head;
+        ListNode* slow=head;
+        while(fast!=NULL && fast->next!=NULL){
+            slow=slow->next;
+            fast=fast->next->next;
+            if(slow==fast){
                 return true;
             }
-            mp[temp]=1;
-            temp=temp->next;
+            
         }
         return false;
     }
