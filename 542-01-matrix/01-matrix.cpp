@@ -1,6 +1,6 @@
 class Solution {
 public:
-    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {\
+    vector<vector<int>> updateMatrix(vector<vector<int>>& mat) {
         int m=mat.size();
         int n=mat[0].size();
         vector<vector<int>> vis(m,vector<int>(n,0));
@@ -26,7 +26,7 @@ public:
             for(int i=0;i<4;i++){
                 int nrow=r+dr[i];
                 int ncol=c+dc[i];
-                if(nrow>=0 && nrow<m && ncol>=0 && ncol<n && vis[nrow][ncol]==0){
+                if(nrow>=0 && nrow<m && ncol>=0 && ncol<n && !vis[nrow][ncol]){
                     vis[nrow][ncol]=1;
                     q.push({{nrow,ncol},steps+1});
                 }
