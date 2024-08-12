@@ -2,22 +2,19 @@ class Solution {
 public:
     double findMaxAverage(vector<int>& nums, int k) {
         int n=nums.size();
-        int i=0;
-        int j=k;
         double sum=0;
         for(int i=0;i<k;i++){
             sum+=nums[i];
         }
-        double maxi=sum;
+        double maxavg=sum;
+        int i=0,j=k;
         while(j<n){
             sum-=nums[i];
             sum+=nums[j];
-            maxi=max(maxi,sum);
+            maxavg=max(maxavg,sum);
             i++;
             j++;
         }
-        double avg=maxi/k;
-        cout<<maxi<<endl;
-        return avg;
+        return maxavg/k;
     }
 };
