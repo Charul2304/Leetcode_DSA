@@ -5,26 +5,26 @@ public:
         for(auto x:prerequisites){
             adj[x[0]].push_back(x[1]);
         }
-        vector<int> indegree(n,0);
+        vector<int> indegree(n);
         for(int i=0;i<n;i++){
-            for(auto it:adj[i]){
-                indegree[it]++;
+            for(auto x:adj[i]){
+                indegree[x]++;
             }
         }
         queue<int> q;
+        int topocount=0;
         for(int i=0;i<n;i++){
             if(indegree[i]==0) q.push(i);
         }
-        int count=0;
         while(!q.empty()){
             int node=q.front();
             q.pop();
-            count++;
+            topocount++;
             for(auto it:adj[node]){
                 indegree[it]--;
                 if(indegree[it]==0) q.push(it);
             }
         }
-        return count==n;
+        return n==topocount;
     }
 };
