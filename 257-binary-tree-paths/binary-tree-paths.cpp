@@ -11,22 +11,23 @@
  */
 class Solution {
 public:
-    void solve(TreeNode* root,string s,vector<string>& v){
-        if(!root) return;
-        
-        if(!root->left && !root->right) s+=to_string(root->val);
+    void solve(TreeNode* root,vector<string>& ans,string s){
+        if(root==NULL) return;
+        if(root->left==NULL && root->right==NULL){
+            s+=to_string(root->val);
+        }
         else s+=to_string(root->val)+"->";
-        solve(root->left,s,v);
-        if(!root->left && !root->right){
-            v.push_back(s);
+        solve(root->left,ans,s);
+        if(root->left==NULL && root->right==NULL){
+            ans.push_back(s);
             s="";
         }
-        solve(root->right,s,v);
+        solve(root->right,ans,s);
     }
     vector<string> binaryTreePaths(TreeNode* root) {
         vector<string> ans;
-        string s;
-        solve(root,s,ans);
+        string s="";
+        solve(root,ans,s);
         return ans;
     }
 };
