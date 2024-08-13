@@ -1,10 +1,9 @@
 class Solution {
 public:
     char nextGreatestLetter(vector<char>& letters, char target) {
+        char ans='\0';
         int n=letters.size();
-        int low=0;
-        int high=n-1;
-        char ans='0';
+        int low=0,high=n-1;
         while(low<=high){
             int mid=(low+high)/2;
             if(letters[mid]>target){
@@ -13,9 +12,8 @@ public:
             }
             else{
                 low=mid+1;
-            } 
+            }
         }
-        if(ans=='0') return letters[0];
-        return ans;
+        return ans!='\0' ? ans : letters[0];
     }
 };
