@@ -19,16 +19,17 @@ public:
         while(!q.empty()){
             auto p=q.front();
             q.pop();
-            int r=p.first.first;
-            int c=p.first.second;
+            int row=p.first.first;
+            int col=p.first.second;
             int steps=p.second;
-            dist[r][c]=steps;
+            dist[row][col]=steps;
             for(int i=0;i<4;i++){
-                int nrow=r+dr[i];
-                int ncol=c+dc[i];
-                if(nrow>=0 && nrow<m && ncol>=0 && ncol<n && !vis[nrow][ncol]){
-                    vis[nrow][ncol]=1;
+                int nrow=row+dr[i];
+                int ncol=col+dc[i];
+                if(nrow>=0 && nrow<m && ncol>=0 && ncol<n &&
+                mat[nrow][ncol] && !vis[nrow][ncol]){
                     q.push({{nrow,ncol},steps+1});
+                    vis[nrow][ncol]=1;
                 }
             }
         }
