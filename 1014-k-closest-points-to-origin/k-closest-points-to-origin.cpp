@@ -1,18 +1,18 @@
 class Solution {
 public:
     vector<vector<int>> kClosest(vector<vector<int>>& points, int k) {
-        priority_queue<pair<int,pair<int,int>>> pq;
-        for(auto arr:points){
-            int cal=abs(arr[0]*arr[0])+abs(arr[1]*arr[1]);
-            pq.push({cal,{arr[0],arr[1]}});
+        priority_queue<pair<int,vector<int>>> pq;
+        int n=points.size();
+        for(int i=0;i<n;i++){
+            int dist=abs(points[i][0])*abs(points[i][0])+abs(points[i][1])*abs(points[i][1]);
+            pq.push({dist,points[i]});
             if(pq.size()>k){
                 pq.pop();
             }
-           
         }
         vector<vector<int>> ans;
         while(!pq.empty()){
-            ans.push_back({pq.top().second.first,pq.top().second.second});
+            ans.push_back(pq.top().second);
             pq.pop();
         }
         return ans;
