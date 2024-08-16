@@ -12,8 +12,6 @@
 class Solution {
 public:
     bool isCousins(TreeNode* root, int x, int y) {
-        int mini=min(x,y);
-        int maxi=max(x,y);
         queue<TreeNode*> q;
         q.push(root);
         while(!q.empty()){
@@ -23,10 +21,10 @@ public:
             for(int i=0;i<size;i++){
                 TreeNode* node=q.front();
                 q.pop();
-                if(node->val==mini){
+                if(node->val==x){
                     flag1=true;
                 }
-                if(node->val==maxi){
+                if(node->val==y){
                     flag2=true;
                 }
                 if(node->left && node->right){
