@@ -10,10 +10,10 @@ public:
         for(int i=n-2;i>=0;i--){
             suffix[i]=suffix[i+1]*nums[i+1];
         }
-        vector<int> ans(n);
+        vector<int> answer(n,1);
         for(int i=0;i<n;i++){
-            ans[i]=prefix[i]*suffix[i];
+            answer[i]=prefix[i]*suffix[i];
         }
-        return ans;
+        return answer;
     }
 };
