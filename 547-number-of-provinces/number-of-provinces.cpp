@@ -1,9 +1,11 @@
 class Solution {
 public:
-    void dfs(int src,vector<int>& vis,vector<int> adj[]){
-        vis[src]=1;
-        for(auto it:adj[src]){
-            if(!vis[it]) dfs(it,vis,adj);
+    void dfs(int node,vector<int> adj[],vector<int>& vis){
+        vis[node]=1;
+        for(auto x:adj[node]){
+            if(!vis[x]){
+                dfs(x,adj,vis);
+            }
         }
     }
     int findCircleNum(vector<vector<int>>& isConnected) {
@@ -16,11 +18,11 @@ public:
                 }
             }
         }
-        vector<int> vis(n,0);
         int count=0;
+        vector<int> vis(n,0);
         for(int i=0;i<n;i++){
             if(!vis[i]){
-                dfs(i,vis,adj);
+                dfs(i,adj,vis);
                 count++;
             }
         }
