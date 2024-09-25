@@ -12,10 +12,10 @@ public:
             }
         }
         queue<int> q;
-        int topocount=0;
         for(int i=0;i<n;i++){
             if(indegree[i]==0) q.push(i);
         }
+        int topocount=0;
         while(!q.empty()){
             int node=q.front();
             q.pop();
@@ -25,6 +25,6 @@ public:
                 if(indegree[it]==0) q.push(it);
             }
         }
-        return n==topocount;
+        return topocount==n;
     }
 };
