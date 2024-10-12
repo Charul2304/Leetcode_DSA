@@ -15,8 +15,8 @@ public:
         vector<vector<int>> ans;
         if(root==NULL) return ans;
         queue<TreeNode*> q;
-        q.push(root);
         bool flag=false;
+        q.push(root);
         while(!q.empty()){
             int size=q.size();
             vector<int> level;
@@ -34,8 +34,8 @@ public:
             if(flag){
                 reverse(level.begin(),level.end());
             }
-            flag=!flag;
             ans.push_back(level);
+            flag=!flag;
         }
         return ans;
     }
