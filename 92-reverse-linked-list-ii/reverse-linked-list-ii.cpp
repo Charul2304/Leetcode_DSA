@@ -10,40 +10,36 @@
  */
 class Solution {
 public:
+    ListNode* revList(ListNode* head) {
+        ListNode* dummy = NULL;
+        ListNode* temp = head;
+        while (temp != NULL) {
+            ListNode* front = temp->next;
+            temp->next = dummy;
+            dummy = temp;
+            temp = front;
+        }
+        return dummy;
+    }
+
     ListNode* reverseBetween(ListNode* head, int left, int right) {
-        if (head == NULL || left == right) return head;
-
-        // Initialize pointers
-        ListNode* prev1 = NULL;
-        ListNode* curr = head;
-
-        // Move curr to the left position and prev1 to the node before left
+        if (head == NULL || head->next == NULL || left == right) return head;
+        ListNode* dummy = new ListNode(0);  
+        dummy->next = head;
+        ListNode* prev = dummy;
         for (int i = 1; i < left; i++) {
-            prev1 = curr;
+            prev = prev->next;
+        }
+        ListNode* start = prev->next;
+        ListNode* curr = start;
+        for (int i = left; i < right; i++) {
             curr = curr->next;
         }
-
-        // `leftptr` points to the start of the sublist to reverse
-        ListNode* leftptr = curr;
-        ListNode* prev2 = NULL;
-
-        // Reverse the sublist between left and right
-        for (int i = left; i <= right; i++) {
-            ListNode* next = curr->next;
-            curr->next = prev2;
-            prev2 = curr;
-            curr = next;
-        }
-
-        // Reconnect the reversed sublist with the rest of the list
-        if (prev1 != NULL) {
-            prev1->next = prev2;  // Connect the node before left to the new start
-        } else {
-            head = prev2;  // Update head if left was 1
-        }
-
-        leftptr->next = curr;  // Connect the end of the reversed sublist to the remaining part of the list
-
-        return head;
+        ListNode* nextlist = curr->next;
+        curr->next = NULL;
+        ListNode* rev = revList(start);
+        prev->next = rev;
+        start->next = nextlist;
+        return dummy->next;  
     }
 };
