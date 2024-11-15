@@ -17,6 +17,7 @@ public:
         solve(root->left);
         solve(root->right);
     }
+
     TreeNode* invertTree(TreeNode* root) {
         solve(root);
         return root;
