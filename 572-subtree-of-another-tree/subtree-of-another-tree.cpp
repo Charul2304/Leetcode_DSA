@@ -12,12 +12,14 @@
 class Solution {
 public:
     bool check(TreeNode* p,TreeNode* q){
-        if(!p || !q) return !p && !q;
-        return p->val==q->val && check(p->left,q->left) && check(p->right,q->right);
+        if(p==NULL && q==NULL) return true;
+        if(p==NULL || q==NULL) return false;
+        if(p->val!=q->val) return false;
+        return check(p->left,q->left) && check(p->right,q->right);
     }
     bool isSubtree(TreeNode* root, TreeNode* subRoot) {
-        if(!root) return false;
+        if(root==NULL) return false;
         if(check(root,subRoot)) return true;
-        return isSubtree(root->left,subRoot)||isSubtree(root->right,subRoot);
+        return isSubtree(root->left,subRoot) || isSubtree(root->right,subRoot);
     }
 };
