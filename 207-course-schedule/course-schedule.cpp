@@ -5,15 +5,17 @@ public:
         for(auto x:prerequisites){
             adj[x[0]].push_back(x[1]);
         }
-        vector<int> indegree(n);
+        vector<int> indegree(n,0);
         for(int i=0;i<n;i++){
-            for(auto x:adj[i]){
-                indegree[x]++;
+            for(auto it:adj[i]){
+                indegree[it]++;
             }
         }
         queue<int> q;
         for(int i=0;i<n;i++){
-            if(indegree[i]==0) q.push(i);
+            if(indegree[i]==0){
+                q.push(i);
+            }
         }
         int topocount=0;
         while(!q.empty()){
