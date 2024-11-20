@@ -2,9 +2,9 @@ class Solution {
 public:
     void dfs(int node,vector<int> adj[],vector<int>& vis){
         vis[node]=1;
-        for(auto x:adj[node]){
-            if(!vis[x]){
-                dfs(x,adj,vis);
+        for(auto it:adj[node]){
+            if(!vis[it]){
+                dfs(it,adj,vis);
             }
         }
     }
@@ -18,14 +18,14 @@ public:
                 }
             }
         }
-        int count=0;
         vector<int> vis(n,0);
+        int ans=0;
         for(int i=0;i<n;i++){
             if(!vis[i]){
                 dfs(i,adj,vis);
-                count++;
+                ans++;
             }
         }
-        return count;
+        return ans;
     }
 };
