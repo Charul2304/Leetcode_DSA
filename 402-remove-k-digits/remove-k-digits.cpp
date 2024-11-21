@@ -1,8 +1,9 @@
 class Solution {
 public:
     string removeKdigits(string num, int k) {
-        vector<char> st;
-        if(num.size()==k) return "0";
+        string st;
+        int n=num.size();
+        if(n==k) return "0";
         for(char c:num){
             while(k>0 && !st.empty() && st.back()>c){
                 st.pop_back();
@@ -19,6 +20,6 @@ public:
             if(ans.empty() && c=='0') continue;
             ans.push_back(c);
         }
-        return ans.empty()?"0":ans;
+        return ans.empty() ? "0" : ans;
     }
 };
