@@ -7,7 +7,7 @@ public:
         int maxlen=0;
         while(j<n){
             if(nums[j]==0) numzero++;
-            while(numzero>k){
+            if(numzero>k){
                 if(nums[i]==0) numzero--;
                 i++;
             }
