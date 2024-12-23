@@ -3,6 +3,7 @@ public:
     int orangesRotting(vector<vector<int>>& grid) {
         int m=grid.size();
         int n=grid[0].size();
+        int tm=0;
         queue<pair<pair<int,int>,int>> q;
         vector<vector<int>> vis(m,vector<int>(n,0));
         for(int i=0;i<m;i++){
@@ -13,21 +14,21 @@ public:
                 }
             }
         }
-        int tm=0;
-        int dr[4]={-1,0,1,0};
-        int dc[4]={0,1,0,-1};
+        int dr[4]={0,1,0,-1};
+        int dc[4]={-1,0,1,0};
         while(!q.empty()){
             auto p=q.front();
-            q.pop();
-            int r=p.first.first;
-            int c=p.first.second;
+            int row=p.first.first;
+            int col=p.first.second;
             int t=p.second;
-            tm=max(t,tm);
+            q.pop();
+            tm=max(tm,t);
             for(int i=0;i<4;i++){
-                int nrow=dr[i]+r;
-                int ncol=dc[i]+c;
+                int nrow=row+dr[i];
+                int ncol=col+dc[i];
                 if(nrow>=0 && nrow<m && ncol>=0 && ncol<n &&
-                vis[nrow][ncol]==0 && grid[nrow][ncol]==1){
+                grid[nrow][ncol]==1 && !vis[nrow][ncol]){
+                    grid[nrow][ncol]=2;
                     q.push({{nrow,ncol},t+1});
                     vis[nrow][ncol]=1;
                 }
@@ -35,7 +36,7 @@ public:
         }
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
-                if(!vis[i][j] && grid[i][j]==1) return -1;
+                if(grid[i][j]==1) return -1;
             }
         }
         return tm;
