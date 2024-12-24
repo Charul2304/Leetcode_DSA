@@ -5,12 +5,13 @@ public:
         for(auto word:strs){
             string key=word;
             sort(key.begin(),key.end());
-            if(mp.find(key)==mp.end()){
-                mp[key]={word};
-            }
-            else{
-                mp[key].push_back(word);
-            }
+            // if(mp.find(key)==mp.end()){
+            //     mp[key]={word};
+            // }
+            // else{
+            //     mp[key].push_back(word);
+            // }
+            mp[key].push_back(word);
         }
         vector<vector<string>> ans;
         for(auto x:mp){
