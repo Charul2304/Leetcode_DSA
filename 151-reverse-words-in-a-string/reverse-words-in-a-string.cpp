@@ -9,17 +9,18 @@ public:
                 word="";
             }
             else{
-                word+=x;
+                if(x!=' ')word+=x;
             }
         }
         if(!word.empty()) words.push_back(word);
         reverse(words.begin(),words.end());
-        string result="";
+        string ans="";
         for(auto x:words){
-            result+=x;
-            result+=" ";
+            ans+=x;
+            ans+=" ";
         }
-        result.pop_back();
-        return result;
+        cout<<words.size()<<endl;
+        ans.pop_back();
+        return ans;
     }
 };
