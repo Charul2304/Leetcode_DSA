@@ -5,7 +5,7 @@ public:
         for(int i=0;i<nums.size();i++){
             int cost=target-nums[i];
             if(mp.find(cost)!=mp.end()){
-                return {mp[cost],i};
+                return {i,mp[cost]};
             }
             else{
                 mp[nums[i]]=i;
